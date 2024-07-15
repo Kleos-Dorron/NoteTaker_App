@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteTaker_App.MainPage">
+    <ContentPage.BindingContext>
+        <viewmodels:NotesViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            <!-- List of Notes -->
+            <CollectionView ItemsSource="{Binding Notes}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="5" Padding="10" BackgroundColor="LightGray">
+                            <StackLayout>
+                                <Label Text="{Binding Title}" FontSize="20" FontAttributes="Bold" />
+                                <Label Text="{Binding Content}" />
+                                <Label Text="{Binding DateCreated, StringFormat='{0:MMM dd, yyyy HH:mm}'}" FontSize="12" TextColor="Gray" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Add Note Button -->
+            <Button Text="Add Note" Command="{Binding AddNoteCommand}" />
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
